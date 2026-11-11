@@ -47,3 +47,21 @@ También puedes abrir `Main/pom.xml` en un IDE compatible con Maven y ejecutar l
 Proyecto educativo con interfaz de consola. No expone una API HTTP. La estructura permite explorar modelado del dominio, servicios y manejo de excepciones antes de trasladar esos conceptos a un backend web.
 
 [Volver al perfil](https://github.com/DiegoAndresParra14)
+
+
+
+## Datos y validaciones
+
+El sistema precarga aeropuertos colombianos, cuatro pasajeros, un piloto y cinco vuelos. La información vive en memoria y se pierde al cerrar. La capacidad debe ser mayor que cero; las entradas numéricas inválidas muestran un mensaje y permiten continuar en el menú. Una entrada cerrada termina la consola sin una traza de error.
+
+## Pruebas de regresión
+
+Con un JDK 17 o superior disponible en PATH, ejecuta en PowerShell:
+
+```powershell
+$sources = Get-ChildItem Main/src/main/java -Recurse -Filter *.java | ForEach-Object FullName
+javac --release 17 -encoding UTF-8 -d target/test-classes $sources tests/AirportRegressionTest.java
+java -cp target/test-classes AirportRegressionTest
+```
+
+Las pruebas cubren capacidad inválida, reserva con vuelo lleno, porcentaje de ocupación y recuperación del menú ante entradas no numéricas.
