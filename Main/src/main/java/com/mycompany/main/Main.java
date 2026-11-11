@@ -30,6 +30,7 @@ public class Main {
             System.out.println("11. Salir");
             System.out.print("Seleccione una opción: ");
 
+            if (!scanner.hasNextLine()) break;
             int opcion;
             try {
                 opcion = Integer.parseInt(scanner.nextLine());
@@ -38,6 +39,7 @@ public class Main {
                 continue;
             }
 
+            try {
             switch (opcion) {
                 case 1 -> {
                     System.out.print("Código: "); String cod = scanner.nextLine();
@@ -95,7 +97,13 @@ public class Main {
                 }
                 default -> System.out.println("❌ Opción no válida.");
             }
+            } catch (NumberFormatException e) {
+                System.out.println("❌ Ingresa un número entero válido; vuelve a intentar la operación.");
+            } catch (java.util.NoSuchElementException e) {
+                salir = true;
+            }
         }
         scanner.close();
     }
 }
+

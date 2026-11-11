@@ -71,6 +71,10 @@ public class SistemaVuelos {
     }
 
     public void registrarVuelo(String codigo, String codOrigen, String codDestino, int capacidad) {
+        if (capacidad <= 0) {
+            System.out.println("❌ Error: La capacidad debe ser mayor que cero.");
+            return;
+        }
         if (buscarVuelo(codigo) != null) {
             System.out.println("❌ Error: El código de vuelo ya existe.");
             return;

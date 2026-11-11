@@ -16,6 +16,9 @@ public class Vuelo {
     private List<Pasajero> pasajeros;
 
     public Vuelo(String codigo, Aeropuerto origen, Aeropuerto destino, int capacidad) {
+        if (capacidad <= 0) {
+            throw new IllegalArgumentException("La capacidad debe ser mayor que cero.");
+        }
         this.codigo = codigo;
         this.origen = origen;
         this.destino = destino;
